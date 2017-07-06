@@ -64,12 +64,6 @@ rational (QExt a _) = a
 fibRat :: Int -> Integer
 fibRat n = numerator $ rational $ (((1+root5) / 2)^n - ((1 - root5)/2)^n)/root5
 
-fibm :: (MonadMemo Int Integer m, Num Integer, Num Int, Eq Int)
-     => Int -> m Integer
-fibm 0 = return 0
-fibm 1 = return 1
-fibm n = (+) <$> memo fibm (n-1) <*> memo fibm (n-2)
-
 fibNaive :: Int -> Integer
 fibNaive 0 = 0
 fibNaive 1 = 1
@@ -91,6 +85,12 @@ fibBadZipWith = (fib0 !!!)
     zipWith0 _f []     _bs    = []
     zipWith0 _f _as    []     = []
     zipWith0 f  (a:as) (b:bs) = f a b : zipWith0 f as bs
+
+fibm :: (MonadMemo Int Integer m, Num Integer, Num Int, Eq Int)
+     => Int -> m Integer
+fibm 0 = return 0
+fibm 1 = return 1
+fibm n = (+) <$> memo fibm (n-1) <*> memo fibm (n-2)
 
 fibSTArr :: Int -> Integer
 fibSTArr n = runST $ evalArrayMemo (fibm n) (0,n)
