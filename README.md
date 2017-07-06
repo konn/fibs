@@ -16,7 +16,7 @@ The method of logarithmic recursion is communicated by @[n_vip](https://twitter.
 The results are linked below:
 
 * [Benchmark result (Optimised  with `-threaded -O2`)](https://konn.github.io/fibs/bench.html)
-* [Benchmark result (No optimisation: `-O0`)](https://konn.github.io/konn/fibs/bench-no-opts.html)
+* [Benchmark result (No optimisation: `-O0`)](https://konn.github.io/fibs/bench-no-opt.html)
 
 As a total, logarithmic DP is asymptotically fastest and matrix power is the second.
 
