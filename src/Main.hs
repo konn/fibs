@@ -10,7 +10,7 @@ import Criterion.Main
 import Data.Matrix
 
 -- | Q(√n) for square-free n.
-data Quadratic (n :: Nat) = QExt Rational Rational
+data Quadratic (n :: Nat) = QExt (Ratio Int) (Ratio Int)
                  deriving (Eq)
 
 type QRoot5 = Quadratic 5
@@ -52,28 +52,28 @@ instance KnownNat n => Ord (Quadratic n) where
   q <= r = q == r || isPositive (r - q)
 
 instance KnownNat n => Fractional (Quadratic n) where
-  fromRational r = QExt r 0
+  fromRational r = QExt (fromRational r) 0
   recip x@(QExt q r) =
     let base = fromInteger $ natVal x
         den = q*q - base * r*r
     in QExt (q / den) (- r / den)
 
-rational :: Quadratic t -> Rational
+rational :: Quadratic t -> Ratio Int
 rational (QExt a _) = a
 
-fibRat :: Int -> Integer
+fibRat :: Int -> Int
 fibRat n = numerator $ rational $ (((1+root5) / 2)^n - ((1 - root5)/2)^n)/root5
 
-fibNaive :: Int -> Integer
+fibNaive :: Int -> Int
 fibNaive 0 = 0
 fibNaive 1 = 1
 fibNaive n = fibNaive (n - 1) + fibNaive (n - 2)
 
-fibZipWith :: Int -> Integer
+fibZipWith :: Int -> Int
 fibZipWith = (fib0 !!)
   where fib0 = 0 : 1 : zipWith (+) fib0 (tail fib0)
 
-fibBadZipWith :: Int -> Integer
+fibBadZipWith :: Int -> Int
 fibBadZipWith = (fib0 !!!)
   where
     fib0 = 0 : 1 : zipWith0 (+) fib0 (tail fib0)
@@ -86,30 +86,30 @@ fibBadZipWith = (fib0 !!!)
     zipWith0 _f _as    []     = []
     zipWith0 f  (a:as) (b:bs) = f a b : zipWith0 f as bs
 
-fibm :: (MonadMemo Int Integer m, Num Integer, Num Int, Eq Int)
-     => Int -> m Integer
+fibm :: (MonadMemo Int Int m)
+     => Int -> m Int
 fibm 0 = return 0
 fibm 1 = return 1
 fibm n = (+) <$> memo fibm (n-1) <*> memo fibm (n-2)
 
-fibSTArr :: Int -> Integer
+fibSTArr :: Int -> Int
 fibSTArr n = runST $ evalArrayMemo (fibm n) (0,n)
 
-fibMap :: Int -> Integer
+fibMap :: Int -> Int
 fibMap n = startEvalMemo (fibm n)
 
-fibDP :: Int -> Integer
+fibDP :: Int -> Int
 fibDP = fst . loop (0, 1)
   where
     loop t 0 = t
     loop (a, !b) n = loop (b, a+b) (n-1)
 
-fibMatPow :: Int -> Integer
+fibMatPow :: Int -> Int
 fibMatPow n =
   let stepper = fromLists [[0,1],[1,1]]
   in (stepper ^ n * fromLists [[0],[1]]) ! (1,1)
 
-fibMatDiag :: Int -> Integer
+fibMatDiag :: Int -> Int
 fibMatDiag n =
   let p  = fromLists [[1, 1],[(1+root5)/2, (1-root5)/2]]
       p' = fromLists [[1/2 - root5/10, root5/5]
@@ -119,7 +119,7 @@ fibMatDiag n =
       ans = diagonalList 2 0 [phi^n, psi^n]
   in numerator $ rational $ (p * ans * p' * fromLists [[0],[1]]) ! (1,1)
 
-fibLog :: Int -> Integer
+fibLog :: Int -> Int
 fibLog = fst . loop
   where
     loop 0 = (0,1)
