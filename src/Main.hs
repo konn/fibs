@@ -99,10 +99,10 @@ fibMap :: Int -> Integer
 fibMap n = startEvalMemo (fibm n)
 
 fibDP :: Int -> Integer
-fibDP = loop (0,1)
+fibDP = fst . loop (0, 1)
   where
-    loop (i, _) 0 = i
-    loop (i, j) n = loop (j, i+ j) (n - 1)
+    loop t 0 = t
+    loop (a, !b) n = loop (b, a+b) (n-1)
 
 fibMatPow :: Int -> Integer
 fibMatPow n =
