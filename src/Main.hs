@@ -140,8 +140,8 @@ main =
                 , bench "zipWith-nofuse" $ nf fibBadZipWith 25
                 , bench "Linear DP" $ nf fibDP 25
                 , bench "Log DP" $ nf fibLog 25
-                , bench "memo-map" $ nf fibMap 25
-                , bench "memo-array" $ nf fibSTArr 25
+                -- , bench "memo-map" $ nf fibMap 25
+                -- , bench "memo-array" $ nf fibSTArr 25
                 , bench "Q(√5)" $ nf fibRat 25
                 , bench "Naive matrix power" $ nf fibMatPow 25
                 , bench "Matrix power with diag" $ nf fibMatDiag 25
@@ -151,8 +151,8 @@ main =
                 , bench "zipWith-nofuse" $ nf fibBadZipWith 100
                 , bench "Linear DP" $ nf fibDP 100
                 , bench "Log DP" $ nf fibLog 100
-                , bench "memo-map" $ nf fibMap 100
-                , bench "memo-array" $ nf fibSTArr 100
+                -- , bench "memo-map" $ nf fibMap 100
+                -- , bench "memo-array" $ nf fibSTArr 100
                 , bench "Q(√5)" $ nf fibRat 100
                 , bench "Naive matrix power" $ nf fibMatPow 100
                 , bench "Matrix power with diag" $ nf fibMatDiag 100
@@ -162,8 +162,8 @@ main =
                 , bench "zipWith-nofuse" $ nf fibBadZipWith 10000
                 , bench "Linear DP" $ nf fibDP 10000
                 , bench "Log DP" $ nf fibLog 10000
-                , bench "memo-map" $ nf fibMap 10000
-                , bench "memo-array" $ nf fibSTArr 10000
+                -- , bench "memo-map" $ nf fibMap 10000
+                -- , bench "memo-array" $ nf fibSTArr 10000
                 , bench "Q(√5)" $ nf fibRat 10000
                 , bench "Naive matrix power" $ nf fibMatPow 10000
                 , bench "Matrix power with diag" $ nf fibMatDiag 10000
@@ -173,8 +173,8 @@ main =
                 , bench "zipWith-nofuse" $ nf fibBadZipWith 100000
                 , bench "Linear DP" $ nf fibDP 100000
                 , bench "Log DP" $ nf fibLog 100000
-                , bench "memo-map" $ nf fibMap 100000
-                , bench "memo-array" $ nf fibSTArr 100000
+                -- , bench "memo-map" $ nf fibMap 100000
+                -- , bench "memo-array" $ nf fibSTArr 100000
                 , bench "Q(√5)" $ nf fibRat 100000
                 , bench "Naive matrix power" $ nf fibMatPow 100000
                 , bench "Matrix power with diag" $ nf fibMatDiag 100000
