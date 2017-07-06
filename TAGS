@@ -1,0 +1,40 @@
+
+./Setup.hs,15
+main main1,2
+
+./src/Main.hs,888
+module Main Main3,4
+data Quadratic Quadratic12,13
+data Quadratic (n :: Nat) = QExt QExt12,13
+type QRoot5 QRoot515,16
+root5 root517,18
+root5 root518,19
+instance instance20,21
+isPositive isPositive34,35
+isPositive isPositive35,36
+rational rational60,61
+rational rational61,62
+fibRat fibRat63,64
+fibRat fibRat64,65
+fibm fibm66,67
+fibm fibm68,69
+fibNaive fibNaive72,73
+fibNaive fibNaive73,74
+fibZipWith fibZipWith77,78
+fibZipWith fibZipWith78,79
+fibBadZipWith fibBadZipWith81,82
+fibBadZipWith fibBadZipWith82,83
+fibSTArr fibSTArr94,95
+fibSTArr fibSTArr95,96
+fibMap fibMap97,98
+fibMap fibMap98,99
+fibDP fibDP100,101
+fibDP fibDP101,102
+fibMatPow fibMatPow106,107
+fibMatPow fibMatPow107,108
+fibMatDiag fibMatDiag111,112
+fibMatDiag fibMatDiag112,113
+fibLog fibLog121,122
+fibLog fibLog122,123
+main main134,135
+main main135,136
