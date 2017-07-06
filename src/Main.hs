@@ -86,7 +86,7 @@ fibBadZipWith = (fib0 !!!)
     _      !!! n | n < 0 =  errorWithoutStackTrace "Prelude.!!: negative index"
     []     !!! _         =  errorWithoutStackTrace "Prelude.!!: index too large"
     (x:_)  !!! 0         =  x
-    (_:xs) !!! n         =  xs !! (n-1)
+    (_:xs) !!! n         =  xs !!! (n-1)
 
     zipWith0 _f []     _bs    = []
     zipWith0 _f _as    []     = []
